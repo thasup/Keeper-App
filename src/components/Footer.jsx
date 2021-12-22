@@ -5,7 +5,7 @@ function Footer() {
     const currentYear = localDate.getFullYear();
     return (
         <footer>
-            <p>Copyright &copy; {currentYear}</p>
+            <p>Copyright &copy; Thanachon {currentYear}</p>
         </footer>
     );
 };

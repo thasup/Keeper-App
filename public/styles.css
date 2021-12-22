@@ -7,7 +7,8 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 body {
-  background: #eee;
+  background-color: #eee;
+  background-image: url("https://www.transparenttextures.com/patterns/blizzard.png");
   padding: 0 16px;
 }
 
@@ -33,7 +34,7 @@ footer {
 }
 
 footer p {
-  color: #ccc;
+  color: rgb(151, 151, 151);
 }
 .note {
   background: #fff;

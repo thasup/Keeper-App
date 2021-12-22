@@ -10,7 +10,7 @@ function App() {
     const [notes, setNotes] = useState([]);
 
     function addNote(inputNote) {
-        if (inputNote !== "") {
+        if (inputNote.title !== "" && inputNote.content !== "") {
             setNotes((prevNote) => {
                 return [
                     ...prevNote,
