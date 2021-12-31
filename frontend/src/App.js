@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import CreateArea from "./CreateArea";
-import Note from "./Note";
-import Footer from "./Footer";
+import Header from "./components/Header";
+import CreateArea from "./components/CreateArea";
+import Note from "./components/Note";
+import Footer from "./components/Footer";
 // import noteSample from "../noteSample";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
     const [notes, setNotes] = useState([]);
@@ -17,8 +17,8 @@ function App() {
                     {
                         key: uuidv4(),
                         title: inputNote.title,
-                        content: inputNote.content
-                    }
+                        content: inputNote.content,
+                    },
                 ];
             });
         }
@@ -32,7 +32,8 @@ function App() {
                 (notes, index) => {
                     // Return only note that index "not match" with the id (the note that "match" the id is equal to got delete)
                     return index !== id;
-                });
+                }
+            );
         });
     }
 
@@ -40,7 +41,7 @@ function App() {
         <div>
             <Header />
             <CreateArea onAdd={addNote} />
-            {notes.map((note, index) =>
+            {notes.map((note, index) => (
                 <Note
                     key={note.key}
                     id={index}
@@ -48,7 +49,7 @@ function App() {
                     content={note.content}
                     onDelete={deleteNote}
                 />
-            )}
+            ))}
             <Footer />
         </div>
     );

@@ -1,43 +1,33 @@
 {
-  "name": "keeper-app",
-  "version": "0.1.0",
-  "private": false,
-  "dependencies": {
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.2.5",
-    "@mui/material": "^5.2.5",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "uuid": "^8.3.2",
-    "web-vitals": "^2.1.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "keeper-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node backend/server",
+        "server": "nodemon backend/server",
+        "client": "npm start --prefix frontend",
+        "dev": "concurrently \"npm run server\" \"npm run client\" "
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thasup/Keeper-App.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/thasup/Keeper-App/issues"
+    },
+    "homepage": "https://github.com/thasup/Keeper-App#readme",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "express-async-handler": "^1.2.0",
+        "mongoose": "^6.1.4"
+    },
+    "devDependencies": {
+        "concurrently": "^6.5.1"
+    }
 }
