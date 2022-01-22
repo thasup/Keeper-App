@@ -4,7 +4,7 @@ import Note from "../models/noteModel.js";
 // @desc    Create note
 // @route    POST /api/notes/
 // @access      Public
-export const createNote = asyncHandler(async (req, res) => {
+export const createNoteEndPoint = asyncHandler(async (req, res) => {
     const { title, content } = req.body;
 
     const noteExist = await Note.fineOne({ title, content });

@@ -5,9 +5,9 @@ function Footer() {
     const currentYear = localDate.getFullYear();
     return (
         <footer>
-            <p>Copyright &copy; Thanachon {currentYear}</p>
+            <p>Copyright &copy; thasup {currentYear}</p>
         </footer>
     );
-};
+}
 
 export default Footer;

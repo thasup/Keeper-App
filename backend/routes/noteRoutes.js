@@ -1,8 +1,8 @@
-import express, { Router } from "express";
-import { createNote } from "../controllers/noteController";
+import express from "express";
+import { createNoteEndPoint } from "../controllers/noteController.js";
 
 const router = express.Router();
 
-router.route("/").post(createNote);
+router.route("/").post(createNoteEndPoint);
 
 export default router;

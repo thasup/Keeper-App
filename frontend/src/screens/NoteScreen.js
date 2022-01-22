@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 import CreateArea from "../components/CreateArea";
 import Note from "../components/Note";
-import Footer from "../components/Footer";
 // import noteSample from "../noteSample";
 import { v4 as uuidv4 } from "uuid";
 

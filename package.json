@@ -24,6 +24,7 @@
     },
     "homepage": "https://github.com/thasup/Keeper-App#readme",
     "dependencies": {
+        "axios": "^0.24.0",
         "dotenv": "^10.0.0",
         "express": "^4.17.2",
         "express-async-handler": "^1.2.0",
