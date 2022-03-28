@@ -3,7 +3,30 @@ import {
   NOTE_CREATE_FAIL,
   NOTE_CREATE_REQUEST,
   NOTE_CREATE_SUCCESS,
+  NOTE_LIST_SUCCESS,
+  NOTE_LIST_FAIL,
 } from "../reducers/noteConstants";
+
+export const listNotes = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/notes/`);
+
+    console.log("All Notes : ", data);
+
+    dispatch({
+      type: NOTE_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTE_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const createNote =
   ({ id, title, content }) =>

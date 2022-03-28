@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 import AddIcon from "@mui/icons-material/Add";
 import { Alert, CircularProgress, Fab, Zoom } from "@mui/material";
 import { createNote } from "../actions/noteActions";
 
-function CreateArea(props) {
+function CreateArea({ setOnCreate }) {
   const dispatch = useDispatch();
   const [isExpanded, setExpanded] = useState(false);
   const [inputNote, setInputNote] = useState({
-    id: "",
     title: "",
     content: "",
   });
@@ -42,13 +41,15 @@ function CreateArea(props) {
 
   function submitNote(event) {
     event.preventDefault();
-    props.onAdd(inputNote);
+    setOnCreate(true);
+
     setInputNote({
-      id: uuidv4(),
       title: "",
       content: "",
     });
+
     dispatch(createNote(inputNote));
+    setOnCreate(false);
   }
 
   function expand() {

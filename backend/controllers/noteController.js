@@ -1,13 +1,21 @@
 import asyncHandler from "express-async-handler";
 import Note from "../models/noteModel.js";
 
+// @desc    Fetch all notes
+// @route    GET /api/notes
+// @access    Public
+export const getNotes = asyncHandler(async (req, res) => {
+  const notes = await Note.find({});
+  res.json({ notes });
+});
+
 // @desc    Create note
 // @route    POST /api/notes/
 // @access      Public
 export const createNoteEndPoint = asyncHandler(async (req, res) => {
-  const { id, title, content } = req.body;
+  const { title, content } = req.body;
 
-  console.log({ id, title, content });
+  console.log({ title, content });
 
   //   if (noteExist) {
   //     res.status(400);
