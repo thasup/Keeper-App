@@ -65,7 +65,7 @@ function NoteScreen() {
           <CircularProgress />
         </div>
       ) : (
-        <>
+        <Container>
           {notes.map((note, index) => (
             <Note
               key={index}
@@ -75,7 +75,7 @@ function NoteScreen() {
               // onDelete={deleteNote}
             />
           ))}
-        </>
+        </Container>
       )}
     </Box>
   );

@@ -5,17 +5,17 @@ import Header from "./components/Header";
 import NoteScreen from "./screens/NoteScreen";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Header />
-            <main>
-                <Routes>
-                    <Route path="/" element={<NoteScreen />} />
-                </Routes>
-            </main>
-            <Footer />
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<NoteScreen />} />
+        </Routes>
+      </main>
+      <Footer />
+    </BrowserRouter>
+  );
 };
 
 export default App;
