@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { v4 as uuidv4 } from "uuid";
 
 import AddIcon from "@mui/icons-material/Add";
 import { Alert, CircularProgress, Fab, Zoom } from "@mui/material";
 import { createNote } from "../actions/noteActions";
 
-function CreateArea({ setOnCreate }) {
+function CreateArea() {
   const dispatch = useDispatch();
   const [isExpanded, setExpanded] = useState(false);
+  const [isShow, setIsShow] = useState(false);
   const [inputNote, setInputNote] = useState({
     title: "",
     content: "",
@@ -20,6 +20,14 @@ function CreateArea({ setOnCreate }) {
     success: successCreateNote,
     error: errorCreateNote,
   } = createNoteState;
+
+  useEffect(() => {
+    setIsShow(true);
+
+    setTimeout(() => {
+      setIsShow(false);
+    }, 3000);
+  }, [loadingCreateNote, successCreateNote, errorCreateNote]);
 
   function handleChange(event) {
     const { value, name } = event.target;
@@ -41,7 +49,6 @@ function CreateArea({ setOnCreate }) {
 
   function submitNote(event) {
     event.preventDefault();
-    setOnCreate(true);
 
     setInputNote({
       title: "",
@@ -49,7 +56,6 @@ function CreateArea({ setOnCreate }) {
     });
 
     dispatch(createNote(inputNote));
-    setOnCreate(false);
   }
 
   function expand() {
@@ -58,7 +64,7 @@ function CreateArea({ setOnCreate }) {
 
   return (
     <div>
-      {successCreateNote && (
+      {successCreateNote && isShow && (
         <Alert
           severity="success"
           sx={{
@@ -71,7 +77,7 @@ function CreateArea({ setOnCreate }) {
           Successfully added note!
         </Alert>
       )}
-      {errorCreateNote && (
+      {errorCreateNote && isShow && (
         <Alert
           severity="error"
           sx={{
@@ -85,14 +91,16 @@ function CreateArea({ setOnCreate }) {
         </Alert>
       )}
       {loadingCreateNote ? (
-        <CircularProgress
-          sx={{
+        <div
+          style={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
           }}
-        />
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <form className="create-note">
           {isExpanded && (

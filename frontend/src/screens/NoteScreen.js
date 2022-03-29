@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Alert, Box, CircularProgress, Container } from "@mui/material";
+import React, { useEffect } from "react";
+import { Alert, Box, Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import CreateArea from "../components/CreateArea";
@@ -9,15 +9,12 @@ import { listNotes } from "../actions/noteActions";
 function NoteScreen() {
   const dispatch = useDispatch();
 
-  const [onCreate, setOnCreate] = useState(false);
-
   const noteList = useSelector((state) => state.noteList);
   const { error, notes } = noteList;
 
   useEffect(() => {
-    console.log("RUN!!!", onCreate);
     dispatch(listNotes());
-  }, [dispatch, onCreate]);
+  }, [dispatch, notes]);
 
   // const colorSelectedHandler = (color) => {
   //   if (color !== null) {
@@ -40,7 +37,7 @@ function NoteScreen() {
 
   return (
     <Box>
-      <CreateArea setOnCreate={setOnCreate} />
+      <CreateArea />
       {error && (
         <div
           style={{
@@ -53,30 +50,17 @@ function NoteScreen() {
           <Alert severity="error">Oops! something went wrong</Alert>
         </div>
       )}
-      {onCreate ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress />
-        </div>
-      ) : (
-        <Container>
-          {notes.map((note, index) => (
-            <Note
-              key={index}
-              id={note.id}
-              title={note.title}
-              content={note.content}
-              // onDelete={deleteNote}
-            />
-          ))}
-        </Container>
-      )}
+      <Container>
+        {notes.map((note, index) => (
+          <Note
+            key={index}
+            id={note.id}
+            title={note.title}
+            content={note.content}
+            // onDelete={deleteNote}
+          />
+        ))}
+      </Container>
     </Box>
   );
 }
