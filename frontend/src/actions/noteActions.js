@@ -5,6 +5,8 @@ import {
   NOTE_CREATE_SUCCESS,
   NOTE_LIST_SUCCESS,
   NOTE_LIST_FAIL,
+  NOTE_DELETE_SUCCESS,
+  NOTE_DELETE_FAIL,
 } from "../reducers/noteConstants";
 
 export const listNotes = () => async (dispatch) => {
@@ -60,3 +62,31 @@ export const createNote =
       });
     }
   };
+
+export const deleteNote = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: NOTE_CREATE_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    await axios.delete(`/api/notes/${id}`, config);
+
+    dispatch({
+      type: NOTE_DELETE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTE_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

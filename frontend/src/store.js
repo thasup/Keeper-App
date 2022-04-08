@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   createNoteReducer,
+  deleteNoteReducer,
   noteListReducers,
 } from "./reducers/noteReducers.js";
 
@@ -10,6 +11,7 @@ import {
 const reducer = combineReducers({
   createNoteState: createNoteReducer,
   noteList: noteListReducers,
+  deleteNoteState: deleteNoteReducer,
 });
 
 const initialState = {};

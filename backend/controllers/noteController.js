@@ -15,13 +15,6 @@ export const getNotes = asyncHandler(async (req, res) => {
 export const createNoteEndPoint = asyncHandler(async (req, res) => {
   const { title, content } = req.body;
 
-  console.log({ title, content });
-
-  //   if (noteExist) {
-  //     res.status(400);
-  //     throw new Error("Note already existed");
-  //   }
-
   const newNote = await Note.create({
     title,
     content,
@@ -35,5 +28,20 @@ export const createNoteEndPoint = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error("Invalid note data");
+  }
+});
+
+// @desc    Delete note
+// @route    DELETE /api/notes/:id
+// @access      Public
+export const deleteNoteEndPoint = asyncHandler(async (req, res) => {
+  const note = await Note.findById(req.params.id);
+
+  if (!note) {
+    res.status(404);
+    throw new Error("Note does not exist");
+  } else {
+    await note.remove();
+    res.json({ message: "Note removed" });
   }
 });
