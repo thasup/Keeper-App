@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import AddIcon from "@mui/icons-material/Add";
 import { Alert, CircularProgress, Fab, Zoom } from "@mui/material";
-import { createNote } from "../actions/noteActions";
 
-function CreateArea() {
-  const dispatch = useDispatch();
+function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [inputNote, setInputNote] = useState({
@@ -22,8 +20,6 @@ function CreateArea() {
   } = createNoteState;
 
   useEffect(() => {
-    setIsShow(true);
-
     setTimeout(() => {
       setIsShow(false);
     }, 3000);
@@ -47,15 +43,16 @@ function CreateArea() {
     });
   }
 
-  function submitNote(event) {
+  function handleCreate(event) {
     event.preventDefault();
+    props.onCreate(inputNote);
+
+    setIsShow(true);
 
     setInputNote({
       title: "",
       content: "",
     });
-
-    dispatch(createNote(inputNote));
   }
 
   function expand() {
@@ -63,8 +60,8 @@ function CreateArea() {
   }
 
   return (
-    <div>
-      {successCreateNote && isShow && (
+    <>
+      {isShow && (
         <Alert
           severity="success"
           sx={{
@@ -123,13 +120,13 @@ function CreateArea() {
             in={isExpanded}
             style={{ transitionDelay: true ? "300ms" : "0ms" }}
           >
-            <Fab color="primary" aria-label="add" onClick={submitNote}>
+            <Fab color="primary" aria-label="add" onClick={handleCreate}>
               <AddIcon />
             </Fab>
           </Zoom>
         </form>
       )}
-    </div>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import {
   NOTE_LIST_FAIL,
   NOTE_DELETE_SUCCESS,
   NOTE_DELETE_FAIL,
+  NOTE_DELETE_REQUEST,
 } from "../reducers/noteConstants";
 
 export const listNotes = () => async (dispatch) => {
@@ -64,7 +65,7 @@ export const createNote =
 export const deleteNote = (id) => async (dispatch) => {
   try {
     dispatch({
-      type: NOTE_CREATE_REQUEST,
+      type: NOTE_DELETE_REQUEST,
     });
 
     const config = {
