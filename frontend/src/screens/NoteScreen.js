@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CreateArea from "../components/CreateArea";
 import Note from "../components/Note";
-import { listNotes } from "../actions/noteActions";
+import { deleteNote, listNotes } from "../actions/noteActions";
 
 function NoteScreen() {
   const dispatch = useDispatch();
@@ -16,24 +16,11 @@ function NoteScreen() {
     dispatch(listNotes());
   }, [dispatch, notes]);
 
-  // const colorSelectedHandler = (color) => {
-  //   if (color !== null) {
-  //     onCreate(color);
-  //   }
-  // };
-
-  // function deleteNote(id) {
-  //   setNotes((prevNote) => {
-  //     // Filter through an "notes" array to get rid of the one that match with "id"
-  //     return prevNote.filter(
-  //       // Loop through each note in previous "notes" array and get the "index" of each note
-  //       (note) => {
-  //         // Return only note that index "not match" with the id (the note that "match" the id is equal to got delete)
-  //         return note.id !== id;
-  //       }
-  //     );
-  //   });
-  // }
+  const deleteNoteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteNote(id));
+    }
+  };
 
   return (
     <Box>
@@ -54,10 +41,10 @@ function NoteScreen() {
         {notes.map((note, index) => (
           <Note
             key={index}
-            id={note.id}
+            id={note._id}
             title={note.title}
             content={note.content}
-            // onDelete={deleteNote}
+            onDelete={deleteNoteHandler}
           />
         ))}
       </Container>

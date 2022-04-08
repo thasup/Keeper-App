@@ -13,8 +13,6 @@ export const listNotes = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/notes/`);
 
-    console.log("All Notes : ", data);
-
     dispatch({
       type: NOTE_LIST_SUCCESS,
       payload: data,
@@ -63,7 +61,7 @@ export const createNote =
     }
   };
 
-export const deleteNote = (id) => async (dispatch, getState) => {
+export const deleteNote = (id) => async (dispatch) => {
   try {
     dispatch({
       type: NOTE_CREATE_REQUEST,
