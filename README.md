@@ -22,7 +22,7 @@ A simple note keeper app that built with **MERN** stack, **MUI** and **Redux**
 
 [(Back to top)](#table-of-contents)
 
-[DEMO LINK](https://thasup-noodle-keep.herokuapp.com/)
+[DEMO LINK](https://thasup-noodle-keeper.onrender.com/)
 
 # Install
 
